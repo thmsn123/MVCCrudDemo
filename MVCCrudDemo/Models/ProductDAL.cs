@@ -44,8 +44,10 @@ namespace MVCCrudDemo.Models
             return productsList[index];
         }
 
-        public ProductInfo UpdateProduct(ProductInfo objProd) { 
-            return productsList[0];
+        public ProductInfo UpdateProduct(ProductInfo objProd) {
+            productsList[objProd.ID] = objProd;
+
+            return productsList[objProd.ID];
         }
     }
 }
