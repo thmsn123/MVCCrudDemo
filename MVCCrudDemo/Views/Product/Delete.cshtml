@@ -14,7 +14,7 @@
             Name: @Html.DisplayFor(model => model.Name)
         </dt>
         <dt>
-            Price: @Html.DisplayFor(model => model.Price)
+            Price: @Html.DisplayFor(model => model.Price) $
         </dt>
         <dt>
             Price: @Html.DisplayFor(model => model.Specifications)
@@ -24,6 +24,9 @@
         <input type="hidden" asp-for="ID" />
         <input type="submit" value="Delete" class="btn btn-danger" />
         <a asp-action="Index">Back to home</a>
-     </form>
+    </form>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

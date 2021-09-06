@@ -91,13 +91,8 @@ namespace MVCCrudDemo.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
-                product.DeleteProduct(objProd);
-                return RedirectToAction("Index");
-            }
-
-            return View(product);
+            product.DeleteProduct(objProd);
+            return RedirectToAction("Index"); 
         }
 
         public IActionResult Details(int? id)

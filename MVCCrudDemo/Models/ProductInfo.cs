@@ -10,10 +10,14 @@ namespace MVCCrudDemo.Models
     {
         [Required]
         public int ID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Enter product name in correct format!")]
+        [Display(Name = "Scooter Name")]
         public string Name { get; set; }
+        [MinLength(50),MaxLength(500)]
+        [Display(Name = "Scooter Specifications")]
         public string Specifications { get; set; }
-        [Required]
-        public string Price { get; set; }
+        [Required (ErrorMessage ="Enter Price in correct format!")]
+        [Display(Name = "Scooter Price")]
+        public int Price { get; set; }
     }
 }
