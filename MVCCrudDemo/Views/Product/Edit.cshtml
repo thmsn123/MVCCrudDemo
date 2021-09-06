@@ -23,6 +23,11 @@
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Specifications"></label>
+                <textarea asp-for="Specifications" style="height:200px;" class="form-control"></textarea>
+                <span asp-validation-for="Specifications" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-success" />
             </div>
         </form>
@@ -33,3 +38,6 @@
     <a asp-action="Index">Back to home</a>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
