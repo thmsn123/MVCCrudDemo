@@ -91,15 +91,9 @@ namespace MVCCrudDemo.Controllers
                 return NotFound();
             }
 
-            if (product == null)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
-                ProductInfo prod = product.GetProductByID(id);
-                product.DeleteProduct(prod);
+                product.DeleteProduct(objProd);
                 return RedirectToAction("Index");
             }
 

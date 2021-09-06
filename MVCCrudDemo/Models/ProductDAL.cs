@@ -8,11 +8,11 @@ namespace MVCCrudDemo.Models
     public class ProductDAL
     {
         static List<ProductInfo> productsList = new List<ProductInfo>() {
-                new ProductInfo(){ ID = 0, Name="Xiaomi Essentials", Price="350$"},
-                new ProductInfo(){ ID = 1, Name="Xiaomi m365", Price="400$"},
-                new ProductInfo(){ ID = 2, Name="Xiaomi MI 1 s", Price="450$"},
-                new ProductInfo(){ ID = 3, Name="Xiaomi 3 BLK", Price="550$"},
-                new ProductInfo(){ ID = 4, Name="Xiaomi 2 PRO", Price="600$"}
+                new ProductInfo(){ ID = 1, Name="Xiaomi Essentials", Price="350$"},
+                new ProductInfo(){ ID = 2, Name="Xiaomi m365", Price="400$"},
+                new ProductInfo(){ ID = 3, Name="Xiaomi MI 1 s", Price="450$"},
+                new ProductInfo(){ ID = 4, Name="Xiaomi 3 BLK", Price="550$"},
+                new ProductInfo(){ ID = 5, Name="Xiaomi 2 PRO", Price="600$"}
             };
         public IEnumerable<ProductInfo> GetAllProducts()
         {
@@ -21,6 +21,7 @@ namespace MVCCrudDemo.Models
 
         public IEnumerable<ProductInfo> AddProduct(ProductInfo product)
         {
+            product.ID = productsList.Count();
             productsList.Add(product);
 
             return productsList;
@@ -28,7 +29,7 @@ namespace MVCCrudDemo.Models
 
         public IEnumerable<ProductInfo> DeleteProduct(ProductInfo item)
         {
-            productsList.Remove(item);
+            productsList.Remove(GetProductByID(item.ID));
 
             return productsList;
         }
@@ -38,7 +39,7 @@ namespace MVCCrudDemo.Models
             int index = 0;
 
             if (ID.HasValue) {
-                index = ID.Value;
+                index = productsList.IndexOf(productsList.Where(prop => prop.ID == ID).FirstOrDefault());
             }
 
             return productsList[index];
