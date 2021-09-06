@@ -18,6 +18,6 @@ namespace MVCCrudDemo.Models
         public string Specifications { get; set; }
         [Required (ErrorMessage ="Enter Price in correct format!")]
         [Display(Name = "Scooter Price")]
-        public int Price { get; set; }
+        public double Price { get; set; }
     }
 }

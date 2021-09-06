@@ -31,7 +31,7 @@ namespace MVCCrudDemo.Controllers
                 product.AddProduct(obj);
                 return RedirectToAction("Index");
             }
-            return View(product);
+            return View(obj);
         }
 
         public IActionResult Edit(int? id)
