@@ -8,7 +8,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create" class="plus">Add new product</a> 
+    <a asp-action="Create" class="plus"><i class="bi bi-file-plus" style="font-size: 1rem; color: green;"> Add new product</i></a> 
 </p>
 
 <table class="table table-striped">
@@ -44,9 +44,9 @@
                 @Html.DisplayFor(modelItem => prod.Price) $
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@prod.ID">Edit</a>
-                <a asp-action="Details" asp-route-id="@prod.ID">Details</a>
-                <a asp-action="Delete" asp-route-id="@prod.ID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@prod.ID"><i class="bi bi-pen" style="font-size: 1rem; color: green;"></i></a>
+                <a asp-action="Details" asp-route-id="@prod.ID"><i class="bi bi-card-text" style="font-size: 1rem; color: darkblue;"></i></a>
+                <a asp-action="Delete" asp-route-id="@prod.ID"><i class="bi bi bi-x-lg" style="font-size: 1rem; color: red;"></i></a>
             </td>
         </tr>
         }
