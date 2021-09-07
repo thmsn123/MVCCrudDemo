@@ -8,48 +8,52 @@
 <h1>Products List</h1>
 
 <p>
-    <a asp-action="Create" class="plus"><i class="bi bi-file-plus" style="font-size: 1rem; color: green;"> Add new product</i></a> 
+    <a asp-action="Create" class="create-prod"><i class="bi bi-file-plus" style="font-size: 1rem; color: green;"> Add new product</i></a> 
 </p>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Specifications)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var prod in Model) { 
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => prod.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => prod.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => prod.Specifications)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => prod.Price) $
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@prod.ID"><i class="bi bi-pen" style="font-size: 1rem; color: green;"></i></a>
-                <a asp-action="Details" asp-route-id="@prod.ID"><i class="bi bi-card-text" style="font-size: 1rem; color: darkblue;"></i></a>
-                <a asp-action="Delete" asp-route-id="@prod.ID"><i class="bi bi bi-x-lg" style="font-size: 1rem; color: red;"></i></a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table class="table table-responsive table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.ID)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.Specifications)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var prod in Model)
+            {
+                <tr>
+                    <th scope="row">
+                        @Html.DisplayFor(modelItem => prod.ID)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => prod.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => prod.Specifications)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => prod.Price) $
+                    </td>
+                    <td class="create-actions">
+                        <a asp-action="Edit" asp-route-id="@prod.ID"><i class="bi bi-pen" style="font-size: 1rem; color: green;"></i></a>
+                        <a asp-action="Details" asp-route-id="@prod.ID"><i class="bi bi-card-text" style="font-size: 1rem; color: darkblue;"></i></a>
+                        <a asp-action="Delete" asp-route-id="@prod.ID"><i class="bi bi bi-x-lg" style="font-size: 1rem; color: red;"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
 

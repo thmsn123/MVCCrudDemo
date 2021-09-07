@@ -1,0 +1,18 @@
+﻿.navbar-nav i {
+    font-style: normal;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+i {
+    font-style: normal;
+}
+
+.create-prod:hover, a:hover, i:hover {
+    text-decoration: none;
+}
+
+.create-actions {
+    display: flex;
+    flex-direction: column;
+}

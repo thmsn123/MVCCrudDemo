@@ -4,27 +4,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Delete</h1>
+<h1>Delete Product</h1>
 
-<div>
-    <h4>Product Information</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Name: @Html.DisplayFor(model => model.Name)
-        </dt>
-        <dt>
-            Price: @Html.DisplayFor(model => model.Price) $
-        </dt>
-        <dt>
-            Price: @Html.DisplayFor(model => model.Specifications)
-        </dt>
-    </dl>
+<div class="mt-3">
+    <div class="dl-horizontal">
+        <div>
+            <span class="font-weight-bold">Name: </span> @Html.DisplayFor(model => model.Name)
+        </div>
+        <div>
+            <span class="font-weight-bold">Specifications: </span><span class="font-italic">@Html.DisplayFor(model => model.Specifications)</span>
+        </div>
+        <div>
+            <span class="font-weight-bold">Price: </span> @Html.DisplayFor(model => model.Price) $
+        </div>
+    </div>
     <form asp-action="Delete">
         <input type="hidden" asp-for="ID" />
-        <input type="submit" value="Delete" class="btn btn-danger" />
-        <a asp-action="Index">Back to home</a>
+        <input type="submit" value="Delete" class="btn btn-danger mt-3" />
     </form>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Index">Back to home</a>
 </div>
 
 @section Scripts {
