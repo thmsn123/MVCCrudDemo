@@ -63,7 +63,7 @@ namespace MVCCrudDemo.Controllers
                 return RedirectToAction("Index");   
             }
 
-            return View(product);
+            return View(objProd);
         }
 
         public IActionResult Delete(int? id)
