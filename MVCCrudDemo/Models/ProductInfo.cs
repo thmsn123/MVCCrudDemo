@@ -5,7 +5,7 @@ namespace MVCCrudDemo.Models
     public class ProductInfo : IEntityWithId
     {
         [Required]
-        [Range(0, 2000000)]
+        [Range(1, 2000000)]
         public int ID { get; set; }
         [Required(ErrorMessage = "Enter product name in correct format!")]
         [Display(Name = "Scooter Name")]
