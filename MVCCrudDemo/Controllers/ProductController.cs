@@ -1,15 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVCCrudDemo.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MVCCrudDemo.Controllers
 {
     public class ProductController : Controller
     {
-        ProductDAL product = new ProductDAL();
+        ProductViewModel product = new ProductViewModel();
         public IActionResult Index()
         {
             List<ProductInfo> productsList = new List<ProductInfo>();
@@ -20,39 +18,48 @@ namespace MVCCrudDemo.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var model = new ProductViewModel();
+
+            return View("CreateOrEdit", model);
         }
 
         [HttpPost]
-        public IActionResult Create([Bind] ProductInfo obj)
+        public IActionResult Create(ProductViewModel model)
         {
             if (ModelState.IsValid)
             {
-                product.AddProduct(obj);
+                product.AddProduct(model);
                 return RedirectToAction("Index");
             }
-            return View(obj);
+            return View(model);
         }
 
+        [HttpGet]
         public IActionResult Edit(int? id)
         {
-            if (id == null) {
+            ProductInfo prod = product.GetProductByID(id);
+            var model = new ProductViewModel();
+            
+            if (id == null || prod == null) {
                 return NotFound();            
             }
 
-            ProductInfo prod = product.GetProductByID(id);
-
-            if (prod == null)
+            model.ProductInfo = new ProductInfo
             {
-                return NotFound();
-            }
-            
-            return View(prod);
+                ID = (int)id,
+                Name = prod.Name,
+                Specifications = prod.Specifications,
+                Price = prod.Price
+            };
+
+            return View("CreateOrEdit", model);
         }
 
         [HttpPost]
         public IActionResult Edit(int? id, [Bind] ProductInfo objProd)
         {
+            var model = new ProductViewModel();
+
             if (id == null)
             {
                 return NotFound();
@@ -63,7 +70,7 @@ namespace MVCCrudDemo.Controllers
                 return RedirectToAction("Index");   
             }
 
-            return View(objProd);
+            return View("CreateOrEdit", model);
         }
 
         public IActionResult Delete(int? id)
