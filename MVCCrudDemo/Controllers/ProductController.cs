@@ -11,7 +11,7 @@ namespace MVCCrudDemo.Controllers
         public IActionResult Index()
         {
             List<ProductInfo> productsList = new List<ProductInfo>();
-            productsList = product.GetAllProducts().ToList();
+            productsList = product.GetAllProducts().OrderBy(o => o.ID).ToList();
             return View(productsList);
         }
 
@@ -28,11 +28,12 @@ namespace MVCCrudDemo.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool isDuplicate = product.IsProductDuplicate(model.ProductInfo);
+                bool isDuplicate = product.IsProductDuplicate(model.ProductInfo.ID);
 
                 if(isDuplicate)
                 {
                     ModelState.AddModelError("", "Product with the same ID already exists! Please change it.");
+                    model.ProductInfo.ID = 0;
                 }
                 else
                 {

@@ -88,9 +88,9 @@ namespace MVCCrudDemo.Models
             return productsList[index];
         }
 
-        public bool IsProductDuplicate(ProductInfo objProd)
+        public bool IsProductDuplicate(int ID)
         {
-            return productsList.FindIndex(el => el.ID == objProd.ID) >= 0;
+            return productsList.FindIndex(el => el.ID == ID) >= 0;
         }
     }
 }
