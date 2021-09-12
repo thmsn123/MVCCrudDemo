@@ -1,20 +1,27 @@
 ﻿@model MVCCrudDemo.Models.ProductViewModel;
-@{
+    @{
     ViewBag.Title = Model.ActionName;
-}
+    }
 
-<h1>@ViewBag.Title</h1>
+    <h1>@ViewBag.Title</h1>
 
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+    <div class="row">
+        <div class="col-md-8">
+            @using (Html.BeginForm(Model.ActionName, "Product", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @{
-                if (Model.IsEdit)
-                {
-                    @Html.HiddenFor(m => m.ProductInfo.ID)
-                }
+
+            if (Model.IsEdit)
+            {
+                @Html.HiddenFor(m => m.ProductInfo.ID)
+            }
+            else {
+            <div class="form-group">
+                <label asp-for="ProductInfo.ID" class="font-weight-bold"></label>
+                <input asp-for="ProductInfo.ID" class="form-control" />
+                <span asp-validation-for="ProductInfo.ID" class="text-danger"></span>
+            </div>
             }
             <div class="form-group">
                 <label asp-for="ProductInfo.Name" class="font-weight-bold"></label>
@@ -34,14 +41,14 @@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-success" />
             </div>
-        </form>
+            }
+        </div>
     </div>
-</div>
 
-<div class="mt-3">
-    <a asp-action="Index">Back to home</a>
-</div>
+    <div class="mt-3">
+        <a asp-action="Index">Back to home</a>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

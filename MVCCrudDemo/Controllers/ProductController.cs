@@ -28,10 +28,19 @@ namespace MVCCrudDemo.Controllers
         {
             if (ModelState.IsValid)
             {
-                product.AddProduct(model);
-                return RedirectToAction("Index");
+                bool isDuplicate = product.IsProductDuplicate(model.ProductInfo);
+
+                if(isDuplicate)
+                {
+                    ModelState.AddModelError("", "Product with the same ID already exists! Please change it.");
+                }
+                else
+                {
+                    product.AddProduct(model);
+                    return RedirectToAction("Index");
+                }
             }
-            return View(model);
+            return View("CreateOrEdit", model);
         }
 
         [HttpGet]
@@ -56,7 +65,7 @@ namespace MVCCrudDemo.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(int? id, [Bind] ProductInfo objProd)
+        public IActionResult Edit(int? id, ProductViewModel objProd)
         {
             var model = new ProductViewModel();
 
@@ -66,7 +75,7 @@ namespace MVCCrudDemo.Controllers
             }
 
             if (ModelState.IsValid) {
-                product.UpdateProduct(objProd);
+                product.UpdateProduct(objProd.ProductInfo);
                 return RedirectToAction("Index");   
             }
 

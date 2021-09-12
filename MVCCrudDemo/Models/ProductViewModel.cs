@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace MVCCrudDemo.Models
 {
@@ -57,7 +56,6 @@ namespace MVCCrudDemo.Models
 
         public IEnumerable<ProductInfo> AddProduct(ProductViewModel product)
         {
-            product.ProductInfo.ID = productsList[productsList.Count() - 1].ID + 1;
             productsList.Add(product.ProductInfo);
 
             return productsList;
@@ -88,6 +86,11 @@ namespace MVCCrudDemo.Models
             productsList[index] = objProd;
 
             return productsList[index];
+        }
+
+        public bool IsProductDuplicate(ProductInfo objProd)
+        {
+            return productsList.FindIndex(el => el.ID == objProd.ID) >= 0;
         }
     }
 }
